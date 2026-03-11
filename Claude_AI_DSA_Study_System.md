@@ -253,14 +253,78 @@ PROGRESS TRACKING:
 
 Go to: Settings → Capabilities → Skills → Create Skill
 
-#### Skill 1: "DSA Problem Solver"
+> [!IMPORTANT]
+> **Avoiding Skill Conflicts:** Each skill has a `description` field that Claude reads to decide WHICH skill to activate. Make these descriptions very specific and non-overlapping. The **DSA Tutor** handles teaching/learning, the **DSA Problem Solver** handles solving specific problems. Use the exact trigger phrases listed below.
+
+#### Skill 1: "DSA Tutor" (NEW — for Teaching & Learning)
 ```yaml
-name: DSA Problem Solver
-description: Solves DSA problems step-by-step with pattern identification for TCS NQT
+name: DSA Tutor
+description: Teaches and explains DSA topics, concepts, and data structures from scratch when I say "teach me" or "explain" or "learn". This is NOT for solving specific problems — only for learning concepts.
 ```
 **Instructions:**
 ```
-When I give you a DSA problem (by name, LeetCode number, or description):
+ACTIVATE THIS SKILL ONLY when I ask you to "teach", "explain", or "learn" a DSA topic/concept.
+Do NOT activate this for solving specific LeetCode problems — that is the DSA Problem Solver skill.
+
+When I ask you to teach me a DSA topic:
+
+1. CONCEPT INTRO (2-3 paragraphs):
+   - What is this topic/data structure?
+   - Why does it exist? What real-world problem does it solve?
+   - When do you use it in coding interviews?
+
+2. VISUAL EXPLANATION:
+   - Explain with a simple analogy (real-life example)
+   - Show how the data structure/algorithm works step-by-step
+   - Draw out the process using text diagrams if helpful
+
+3. CORE OPERATIONS & COMPLEXITY:
+   - List all key operations (insert, delete, search, etc.)
+   - Time and Space complexity for each operation
+   - Compare with alternatives (e.g., "Why use a hash map here instead of a list?")
+
+4. TEMPLATE CODE:
+   - Show the basic implementation/template in Python
+   - Line-by-line comments explaining each part
+   - Highlight the "skeleton" that stays the same across problems
+
+5. PATTERN CONNECTION:
+   - Which of my 15 DSA patterns does this topic connect to?
+   - When would I recognize this pattern in a problem statement?
+   - Give 3 "trigger phrases" that hint at this topic in problem descriptions
+
+6. EASY WALKTHROUGH:
+   - Pick the EASIEST problem from my DSA.pdf for this topic
+   - Walk through it step-by-step, explaining your thought process
+   - Show the solution with detailed comments
+
+7. PRACTICE ROADMAP:
+   - List 4-6 problems from my DSA.pdf for this topic
+   - Order them: Easy → Medium → Hard
+   - Mark which ones are "must-do for TCS NQT"
+
+8. TCS-SPECIFIC NOTES:
+   - Any TCS-specific quirks for this topic
+   - E.g., "TCS asks manual sort — don't use .sort()"
+   - Common edge cases TCS likes to test
+
+9. QUICK QUIZ (3 questions):
+   - Test my understanding of the concept
+   - Not code — conceptual questions
+   - E.g., "What's the time complexity of...?" or "When would you choose X over Y?"
+```
+
+#### Skill 2: "DSA Problem Solver" (UPDATED — for Solving Specific Problems ONLY)
+```yaml
+name: DSA Problem Solver
+description: Solves a specific DSA problem step-by-step with code when I say "solve" followed by a LeetCode problem name or number. Only activates for solving specific problems, NOT for teaching or explaining concepts.
+```
+**Instructions:**
+```
+ACTIVATE THIS SKILL ONLY when I say "solve" followed by a specific problem name or LeetCode number.
+Do NOT activate this when I say "teach", "explain", or "learn" — that is the DSA Tutor skill.
+
+When I give you a specific DSA problem to solve (by name, LeetCode number, or description):
 
 1. IDENTIFY which of my 15 patterns it belongs to:
    [Two Pointers | Sliding Window | Fast & Slow | Math/Number Theory | Hash Maps | Binary Search | Stack | DP | BFS/DFS | Bit Manipulation | Backtracking | Merge Intervals | Kadane's | Prefix Sums | Heaps/QuickSelect]
@@ -283,13 +347,15 @@ When I give you a DSA problem (by name, LeetCode number, or description):
 8. Create a ONE-LINE revision summary
 ```
 
-#### Skill 2: "Pattern Drill"
+#### Skill 3: "Pattern Drill"
 ```yaml
 name: Pattern Drill
-description: Drills me on a specific DSA pattern with multiple problems
+description: Drills me on a specific DSA pattern with multiple practice problems when I say "drill me on" followed by a pattern name. This is for pattern-based practice, not teaching or solving individual problems.
 ```
 **Instructions:**
 ```
+ACTIVATE THIS SKILL ONLY when I say "Drill me on [pattern name]".
+
 When I say "Drill me on [pattern name]":
 
 1. Briefly explain the pattern (when to use, template code)
@@ -302,13 +368,15 @@ When I say "Drill me on [pattern name]":
 5. Rate my understanding: Beginner / Intermediate / Confident
 ```
 
-#### Skill 3: "Mock Coding Test"
+#### Skill 4: "Mock Coding Test"
 ```yaml
 name: Mock Coding Test
-description: Simulates a TCS NQT coding test with 2 questions and 90-minute timer
+description: Simulates a TCS NQT coding test with 2 questions and 90-minute timer when I say "mock test". Only for exam simulation, not teaching or solving.
 ```
 **Instructions:**
 ```
+ACTIVATE THIS SKILL ONLY when I say "Mock Test" or "mock test".
+
 When I say "Mock Test":
 
 1. Give me exactly 2 coding problems similar to TCS NQT level:
@@ -375,8 +443,9 @@ Help me solve LeetCode [NUMBER] - [PROBLEM NAME].
 ### 🔴 Debugging My Code
 ```
 My code for [PROBLEM] is giving wrong output. Here's my code:
-python
+```python
 [PASTE YOUR CODE]
+```
 Input: [INPUT]
 Expected: [EXPECTED OUTPUT]
 Got: [ACTUAL OUTPUT]
@@ -459,13 +528,21 @@ What are the most common TCS NQT coding patterns and traps? Give me:
 
 ### Recommended Skill Configuration
 
-| Skill Name | Trigger Phrase | Purpose |
-|-----------|---------------|---------|
-| DSA Problem Solver | "Solve [problem]" | Step-by-step solutions |
-| Pattern Drill | "Drill me on [pattern]" | Pattern-focused practice |
-| Mock Coding Test | "Mock test" | Simulated exam |
-| Code Reviewer | "Review my code" | Debug and optimize |
-| Quick Revision | "Quick revision of [topic]" | Fast review before exam |
+| # | Skill Name | Trigger Phrase | What It Does | Does NOT Trigger On |
+|---|-----------|---------------|-------------|--------------------|
+| 1 | **DSA Tutor** | "Teach me...", "Explain...", "Learn..." | Teaches concepts from scratch | "Solve", "Drill", "Mock" |
+| 2 | **DSA Problem Solver** | "Solve [problem/LeetCode #]" | Step-by-step problem solutions | "Teach", "Explain", "Learn" |
+| 3 | **Pattern Drill** | "Drill me on [pattern]" | Pattern-focused practice | "Teach", "Solve", "Mock" |
+| 4 | **Mock Coding Test** | "Mock test" | Simulated TCS exam | Everything else |
+
+> [!TIP]
+> **How to verify the right skill activated:** Check if Claude's response follows the structure defined in that skill's instructions. For example:
+> - **DSA Tutor** response starts with "CONCEPT INTRO" and includes a "QUICK QUIZ"
+> - **DSA Problem Solver** response starts with "PATTERN: [name]" and includes "TCS TIP"
+> - **Pattern Drill** gives you 3 problems in increasing difficulty
+> - **Mock Test** gives you exactly 2 problems with input/output formats
+>
+> If the wrong skill fires, just start your message with the exact trigger word: **"Teach me..."**, **"Solve..."**, **"Drill me on..."**, or **"Mock test"**.
 
 ---
 
