@@ -375,9 +375,8 @@ Help me solve LeetCode [NUMBER] - [PROBLEM NAME].
 ### 🔴 Debugging My Code
 ```
 My code for [PROBLEM] is giving wrong output. Here's my code:
-```python
+python
 [PASTE YOUR CODE]
-```
 Input: [INPUT]
 Expected: [EXPECTED OUTPUT]
 Got: [ACTUAL OUTPUT]
