@@ -28,6 +28,15 @@
 | 15 | [15_MANAGERIAL_ROUND.md](./15_MANAGERIAL_ROUND.md) | MR Questions, STAR Method, Situational | 🔴 Critical |
 | 16 | [16_QUICK_REFERENCE.md](./16_QUICK_REFERENCE.md) | Last-Day Cheat Sheet & Interview Day Checklist | 🔴 Critical |
 
+### 📌 Supplementary Files (Added March 2026 — Gap Coverage)
+
+| # | File | Topic | Priority |
+|---|------|-------|----------|
+| 17 | [17_REST_API_WEB.md](./17_REST_API_WEB.md) | REST API, HTTP Methods, "What happens when you type a URL?", JSON, Authentication | 🔴 Critical |
+| 18 | [18_DESIGN_PATTERNS.md](./18_DESIGN_PATTERNS.md) | Singleton, Factory, Observer, MVC Architecture, Pipe-and-Filter | 🟡 High |
+| 19 | [19_SECURITY_LINUX.md](./19_SECURITY_LINUX.md) | SQL Injection, XSS/CSRF, Hashing vs Encryption, Linux Commands | 🟡 High |
+| 20 | [20_DEVOPS_NETWORKING.md](./20_DEVOPS_NETWORKING.md) | DevOps Culture, CI/CD Pipelines, Jenkins, Networking Devices, Proxy, CDN | 🟡 High |
+
 ---
 
 ## 🎯 Your Genuine Strengths (Lead With These)
@@ -59,4 +68,4 @@
 
 ---
 
-*Prepared: March 2026 | Based on 2025-2026 TCS Digital interview patterns, candidate experiences, and cross-referenced with Krishna's actual project code and resume.*
+*Prepared: March 2026 | Updated: March 30, 2026 (4 supplementary files added for gap coverage) | Based on 2025-2026 TCS Digital interview patterns, candidate experiences, and cross-referenced with Krishna's actual project code and resume.*
